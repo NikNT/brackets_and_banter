@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { wishListSchema } from "../schemas/wishListSchema";
+import axios from "axios";
 
 const Form = () => {
   const {
@@ -16,6 +17,14 @@ const Form = () => {
     },
   });
   const onSubmit = (data) => {
+    axios
+      .post("http://localhost:8000/api/wishlist/", data)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     console.log("Handle Submit", data);
   };
 
